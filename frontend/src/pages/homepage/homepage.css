@@ -2,4 +2,7 @@
   width: 100vw;
   height: 100vh;
   background-color: aliceblue;
+  display: block;
+  justify-content: end;
+  align-items: end;
 }
