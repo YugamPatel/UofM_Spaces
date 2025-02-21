@@ -15,6 +15,9 @@ const MapComp = () => {
       style: "mapbox://styles/mapbox/navigation-night-v1", // Map style (change if needed)
       center: [-97.1384, 49.8951], // Default center (Winnipeg, MB)
       zoom: 10, // Default zoom level
+      pitch: 45, // Pitch
+      bearing: -17.6, // Bearing
+      antialias: true, // Antialiasing
     });
     // Add navigation controls
     map.addControl(new mapboxgl.NavigationControl());
