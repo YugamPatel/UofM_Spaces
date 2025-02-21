@@ -1,15 +1,17 @@
 /* Outer card container */
 .outer-card {
+  height: max-content;
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 15px;
-  max-width: 300px;
+  width: 350px;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow: hidden;
+  overflow: scroll;
+  text-wrap: wrap;
 }
 
 /* Hover effect for a premium look */

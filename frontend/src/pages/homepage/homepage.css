@@ -2,7 +2,7 @@
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
-  background-color: aliceblue;
+  background-color: rgb(0, 27, 51);
   position: relative;
   overflow: hidden; 
 }

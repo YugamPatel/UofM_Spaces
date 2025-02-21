@@ -8,6 +8,7 @@ function Sidebar() {
   return (
     <>
       <div className="outer-body">
+        <h1 className="title">Spaces</h1>
         {spaces.map((space) => {
           return <Card {...space} />;
         })}
