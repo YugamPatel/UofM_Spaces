@@ -3,7 +3,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 450px;
+  max-width: 450px;
   height: calc(100% - 20px);
   margin: 10px 0px 10px 10px;
   display: flex;
@@ -26,5 +26,5 @@
 .title{
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
-  color: rgba(247, 76, 76, 0.871);
+  color: rgba(255, 255, 255, 0.871);
 }
