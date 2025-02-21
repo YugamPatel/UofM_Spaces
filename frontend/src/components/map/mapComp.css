@@ -1,7 +1,9 @@
 .map-wrapper {
+  box-sizing: border-box;
   left: 0;
   top: 0;
   height: 100%;
+  padding: 10px;
   width: 100%;
   border-radius: 10px;
   z-index: 1;
@@ -13,7 +15,6 @@
 .map-container {
   height: 100%;
   width: 100%;
-  padding: 10px;
   border-radius: 10px;
 }
 

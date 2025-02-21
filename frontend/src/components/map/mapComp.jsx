@@ -39,9 +39,6 @@ const MapComp = () => {
       antialias: true,
     });
 
-    // Add navigation controls (zoom in/out, compass)
-    mapRef.current.addControl(new mapboxgl.NavigationControl());
-
     // Once the style loads, add a 3D buildings layer
     mapRef.current.on("load", () => {
       // Find the first label layer in the style (to place our 3D layer underneath it)
