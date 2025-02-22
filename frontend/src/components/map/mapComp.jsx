@@ -79,6 +79,32 @@ const MapComp = ({ selectedCoordinates }) => {
         markerDiv.className = "marker-open"; // style in MapComp.css, e.g. small circle
       }
 
+      markerDiv.addEventListener("click", () => {
+        // Remove highlight from all cards first
+        document.querySelectorAll(".outer-card").forEach((el) => {
+          el.classList.remove("highlighted");
+        });
+
+        const cardId = `card-${space.name.replace(/\s+/g, "-")}`;
+        const cardEl = document.getElementById(cardId);
+        if (cardEl) {
+          if (!space.isCollapsable) {
+            if (isOpen(space.timings) === "Closed") {
+              cardEl.classList.add("highlighted-closed");
+              setTimeout(() => {
+                cardEl.classList.remove("highlighted-closed");
+              }, 1500);
+            } else {
+              cardEl.classList.add("highlighted-open");
+              setTimeout(() => {
+                cardEl.classList.remove("highlighted-open");
+              }, 1500);
+            }
+          }
+        }
+        cardEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
       // Create a Mapbox Marker
       new mapboxgl.Marker(markerDiv)
         .setLngLat([lng, lat]) // reversing: Mapbox wants [lng, lat]
