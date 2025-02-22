@@ -20,7 +20,8 @@ function Card({
     setIsExpanded(!isExpanded);
   };
 
-  const maps = () => {
+  const maps = (e) => {
+    e.stopPropagation();
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition((position) => {
             const lat = position.coords.latitude;
