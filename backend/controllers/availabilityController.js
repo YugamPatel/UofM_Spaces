@@ -1,5 +1,12 @@
-import fetch from "node-fetch"; // Required for Node <18
+import fetch from "node-fetch";
 import { URLSearchParams } from "url";
+
+// Function to get today's date in YYYY-MM-DD format
+const getFormattedDate = (daysToAdd = 0) => {
+  const date = new Date();
+  date.setDate(date.getDate() + daysToAdd); // Add days if needed (0 for today, 1 for tomorrow)
+  return date.toISOString().split("T")[0]; // Extract YYYY-MM-DD
+};
 
 /**
  * Fetches seat availability from the external API.
@@ -8,7 +15,6 @@ import { URLSearchParams } from "url";
  */
 export const fetchAvailability = async (req, res) => {
   try {
-    // Define form data for the request
     const formData = new URLSearchParams({
       lid: "2644",
       gid: "0",
@@ -16,13 +22,12 @@ export const fetchAvailability = async (req, res) => {
       seat: "1",
       seatId: "0",
       zone: "0",
-      start: "2025-02-21",
-      end: "2025-02-22",
+      start: getFormattedDate(0), // Today's date
+      end: getFormattedDate(1), // Tomorrow's date
       pageIndex: "0",
       pageSize: "18",
     }).toString();
 
-    // Send the POST request to the external API
     const response = await fetch(
       "https://lib-umanitoba.libcal.com/spaces/availability/grid",
       {
@@ -30,25 +35,26 @@ export const fetchAvailability = async (req, res) => {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
           Accept: "application/json, text/javascript, */*; q=0.01",
+          Origin: "https://lib-umanitoba.libcal.com",
+          Referer: "https://lib-umanitoba.libcal.com/reserve/QuietPods",
           "User-Agent":
-            "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Mobile Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",
         },
         body: formData,
       }
     );
 
-    // Read response as text first (to handle both JSON and raw text)
     const text = await response.text();
 
-    // Log the response for debugging
-    console.log("Remote server status:", response.status, response.statusText);
+    // Debugging: Check if the response is JSON
+    console.log("Raw Response:", text);
 
-    // Try parsing as JSON, else return raw text
+    // If response is not JSON, return it as plain text
     try {
       const data = JSON.parse(text);
       return res.status(response.status).json(data);
     } catch (error) {
-      console.error("Invalid JSON response. Returning raw text.");
+      console.warn("Response is not JSON, returning as plain text.");
       return res.status(response.status).send(text);
     }
   } catch (error) {
