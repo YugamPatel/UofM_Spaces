@@ -17,13 +17,6 @@ function Card({
   const cardId = `card-${name.replace(/\s+/g, "-")}`;
 
 useEffect(() => {
-// const now = new Date();
-//   const currentDay = now.toLocaleDateString("en-US", { weekday: "long" }); // Example: "Monday"
-//   if(currentDay === "Saturday"){
-//     const toSet = timings.split("\n")[1];
-//     setDay(toSet);
-//   }
-
 console.log(typeof(timings));
 if(typeof(timings) === "string"){
     const now = new Date();
