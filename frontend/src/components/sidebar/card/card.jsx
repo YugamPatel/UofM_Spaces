@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./card.css";
 import { checkIfOpen } from "../../../helperFunctions/mapHelpers";
 
@@ -8,16 +8,52 @@ function Card({
   image,
   isCollapsable,
   location,
+  coordinates,
   timings,
   onClick,
 }) {
+    const [day, setDay] = useState("")
   const [isExpanded, setIsExpanded] = useState(false);
   const cardId = `card-${name.replace(/\s+/g, "-")}`;
+
+useEffect(() => {
+console.log(typeof(timings));
+if(typeof(timings) === "string"){
+    const now = new Date();
+  const currentDay = now.toLocaleDateString("en-US", { weekday: "long" }); // Example: "Monday"
+  if(currentDay === "Saturday"){
+    const toSet = timings.split("\n")[1];
+    setDay(toSet);
+  }
+}
+
+})
 
   const toggleExpand = (e) => {
     e.stopPropagation(); // Prevent card click from triggering
     setIsExpanded(!isExpanded);
   };
+
+  const maps = (e) => {
+    e.stopPropagation();
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition((position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const userLat = coordinates[0];
+            const userLng = coordinates[1];
+            const url =      `https://www.google.com/maps/dir/${lat},${lng}/${userLat},${userLng}/`;   
+            window.open(url, '_blank');
+        },
+    (error) => {
+        console.log("Error in Location fetching");
+        
+    })
+    }
+    else{
+        alert("Geolocation is not supported by this browser.");
+    }
+  }
 
   return (
     <div
@@ -89,11 +125,16 @@ function Card({
         />
         <p>{location}</p>
       </div>
+      <div className="get-location">
+        <button className="loc-btn" onClick={maps}>
+        Get Location
+        </button>
+      </div>
 
       {/* Timings */}
       {typeof timings === "string" && (
         <div className="timings">
-          <p>Timings: {timings}</p>
+          <p>Timings: {day}</p>
         </div>
       )}
 
