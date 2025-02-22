@@ -20,7 +20,7 @@ function Sidebar({ onCardClick }) {
           }
 
           const [lat, lng] = coords;
-          const stop = await getNearestBusStopWinnipeg(lat, lng, 250);
+          const stop = await getNearestBusStopWinnipeg(lat, lng, 500);
 
           if (stop) {
             console.log("Found stop:", stop);
@@ -39,7 +39,6 @@ function Sidebar({ onCardClick }) {
       );
       setSpacesState(updated);
     }
-
     enrichSpacesWithBusStop();
   }, []);
 
