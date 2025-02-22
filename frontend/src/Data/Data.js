@@ -26,7 +26,7 @@ export const spaces = [
     image:
       "https://res.cloudinary.com/dsetoffh9/image/upload/v1740188620/pods_gfugob.jpg",
     isCollapsable: true,
-    coordinates: [49.810907475008875, -97.13397201666622],
+    coordinates: [49.8102231737049, -97.13173648596704],
     location: "Elizabeth Dafoe Library",
     timings: [
       {

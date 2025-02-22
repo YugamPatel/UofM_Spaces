@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./MapComp.css";
-import { spaces } from "../../Data/Test";
+import { spaces } from "../../Data/Data";
 import {
   checkIfOpen,
   highlightSpaceCard,
