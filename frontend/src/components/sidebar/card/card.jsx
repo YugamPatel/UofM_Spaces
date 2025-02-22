@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./card.css";
 import { checkIfOpen } from "../../../helperFunctions/mapHelpers";
 
@@ -12,8 +12,29 @@ function Card({
   timings,
   onClick,
 }) {
+    const [day, setDay] = useState("")
   const [isExpanded, setIsExpanded] = useState(false);
   const cardId = `card-${name.replace(/\s+/g, "-")}`;
+
+useEffect(() => {
+// const now = new Date();
+//   const currentDay = now.toLocaleDateString("en-US", { weekday: "long" }); // Example: "Monday"
+//   if(currentDay === "Saturday"){
+//     const toSet = timings.split("\n")[1];
+//     setDay(toSet);
+//   }
+
+console.log(typeof(timings));
+if(typeof(timings) === "string"){
+    const now = new Date();
+  const currentDay = now.toLocaleDateString("en-US", { weekday: "long" }); // Example: "Monday"
+  if(currentDay === "Saturday"){
+    const toSet = timings.split("\n")[1];
+    setDay(toSet);
+  }
+}
+
+})
 
   const toggleExpand = (e) => {
     e.stopPropagation(); // Prevent card click from triggering
@@ -120,7 +141,7 @@ function Card({
       {/* Timings */}
       {typeof timings === "string" && (
         <div className="timings">
-          <p>Timings: {timings}</p>
+          <p>Timings: {day}</p>
         </div>
       )}
 

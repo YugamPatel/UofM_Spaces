@@ -4,21 +4,65 @@
  * @returns {string} - "Open" or "Closed"
  */
 
+// export const checkIfOpen = (timings) => {
+//   if (!timings) return "Closed";
+
+//   const [start, end] = timings.split(" - ");
+
+//   const now = new Date();
+//   const currentTime = now.getHours() * 60 + now.getMinutes(); // Convert to minutes
+
+//   const [startHours, startMinutes] = start.split(":").map(Number);
+//   const [endHours, endMinutes] = end.split(":").map(Number);
+//   const startTime = startHours * 60 + startMinutes;
+//   const endTime = endHours * 60 + endMinutes;
+
+//   return currentTime >= startTime && currentTime <= endTime ? "Open" : "Closed";
+// };
+
 export const checkIfOpen = (timings) => {
   if (!timings) return "Closed";
 
-  const [start, end] = timings.split(" - ");
-
+  // Get current date and time
   const now = new Date();
+  const currentDay = now.toLocaleDateString("en-US", { weekday: "long" }); // Example: "Monday"
   const currentTime = now.getHours() * 60 + now.getMinutes(); // Convert to minutes
 
-  const [startHours, startMinutes] = start.split(":").map(Number);
-  const [endHours, endMinutes] = end.split(":").map(Number);
-  const startTime = startHours * 60 + startMinutes;
-  const endTime = endHours * 60 + endMinutes;
+  // Convert timings to an array of lines
+  const timingLines = timings.split("\n");
 
-  return currentTime >= startTime && currentTime <= endTime ? "Open" : "Closed";
+  for (let line of timingLines) {
+      let [dayRange, timeRange] = line.split(" : ").map((item) => item.trim());
+
+      if (!timeRange || timeRange.toLowerCase() === "closed") {
+          continue; // Skip closed days
+      }
+
+      // Handle different day types
+      if (
+          (dayRange === "Weekdays" && ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].includes(currentDay)) ||
+          (dayRange === "Saturday" && currentDay === "Saturday") ||
+          (dayRange === "Sunday" && currentDay === "Sunday")
+      ) {
+          // Extract start and end times
+          const [start, end] = timeRange.split(" - ").map((time) => time.trim());
+          const [startHours, startMinutes] = start.split(":").map(Number);
+          const [endHours, endMinutes] = end.split(":").map(Number);
+          const startTime = startHours * 60 + startMinutes;
+          const endTime = endHours * 60 + endMinutes;
+
+          // Check if current time is within the range
+          if (currentTime >= startTime && currentTime <= endTime) {
+              return "Open";
+          } else {
+              return "Closed";
+          }
+      }
+  }
+
+  return "Closed"; // Default return if no matching day is found
 };
+
 
 /**
  * Adds a highlighting effect to a space's card when clicked on the map.
