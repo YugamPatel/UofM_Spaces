@@ -1,15 +1,25 @@
+import React, { useState } from "react";
 import Sidebar from "../../components/sidebar/sidebar";
-import "../homepage/homepage.css";
-import React from "react";
 import MapComp from "../../components/map/mapComp";
+import "../homepage/homepage.css";
 
-const homepage = () => {
+const Homepage = () => {
+  // State for the location the user clicks (from a card)
+  const [selectedCoordinates, setSelectedCoordinates] = useState(null);
+
+  // This callback will receive coordinates from a card click
+  const handleCardClick = (coords) => {
+    setSelectedCoordinates(coords); 
+  };
+
   return (
     <div id="homepage">
-      <Sidebar />
-      <MapComp />
+      {/* Pass the callback to the Sidebar */}
+      <Sidebar onCardClick={handleCardClick} />
+      {/* Pass the selectedCoordinates to the Map */}
+      <MapComp selectedCoordinates={selectedCoordinates} />
     </div>
   );
 };
 
-export default homepage;
+export default Homepage;

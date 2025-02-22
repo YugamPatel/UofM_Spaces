@@ -2,15 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./MapComp.css";
+import { spaces } from "../../Data/Test";
 
 // Replace with your own Mapbox token
 mapboxgl.accessToken =
   "pk.eyJ1IjoieXVnYW0tMDA3IiwiYSI6ImNtN2Y5dnB2bjBoODYybW44MDRtYXZqcjAifQ.b9U8tqIEN8w3HQYTO9ZqBA";
 
-const MapComp = () => {
+const MapComp = ({ selectedCoordinates }) => {
   // Default map parameters
-  const DEFAULT_CENTER = [-97.1384, 49.8951]; // Winnipeg, MB
-  const DEFAULT_ZOOM = 15; // Zoomed in enough for 3D
+  const DEFAULT_CENTER = [-97.13283, 49.80958]; 
+  const DEFAULT_ZOOM = 18; // Zoomed in enough for 3D
   const DEFAULT_PITCH = 45;
   const DEFAULT_BEARING = -17.6;
 
@@ -28,7 +29,7 @@ const MapComp = () => {
   useEffect(() => {
     if (!mapContainerRef.current) return;
 
-    // Create map instance
+    // Initialize the map
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/navigation-night-v1",
@@ -37,11 +38,11 @@ const MapComp = () => {
       pitch: pitch,
       bearing: bearing,
       antialias: true,
+      projection: 'globe'
     });
 
     // Once the style loads, add a 3D buildings layer
     mapRef.current.on("load", () => {
-      // Find the first label layer in the style (to place our 3D layer underneath it)
       const layers = mapRef.current.getStyle().layers;
       const labelLayerId = layers.find(
         (layer) => layer.type === "symbol" && layer.layout["text-field"]
@@ -65,11 +66,23 @@ const MapComp = () => {
         },
         labelLayerId
       );
+      
     });
 
-    // Listen for map movements to update state (optional)
+    // After adding 3D layer, place markers for each space
+    spaces.forEach((space) => {
+      const [lat, lng] = space.coordinates; // data is [lat, lng]
+      const markerDiv = document.createElement("div");
+      markerDiv.className = "marker"; // style in MapComp.css, e.g. small circle
+
+      // Create a Mapbox Marker
+      new mapboxgl.Marker(markerDiv)
+        .setLngLat([lng, lat]) // reversing: Mapbox wants [lng, lat]
+        .addTo(mapRef.current);
+    });
+
+    // Update state on map movements
     mapRef.current.on("move", () => {
-      if (!mapRef.current) return;
       const mapCenter = mapRef.current.getCenter();
       setCenter([mapCenter.lng, mapCenter.lat]);
       setZoom(mapRef.current.getZoom());
@@ -77,20 +90,27 @@ const MapComp = () => {
       setBearing(mapRef.current.getBearing());
     });
 
-    // Add a sample marker at the default center (Winnipeg)
-    const markerEl = document.createElement("div");
-    markerEl.className = "marker"; // See .marker style in your CSS
-
-    new mapboxgl.Marker(markerEl)
-      .setLngLat(DEFAULT_CENTER)
-      .addTo(mapRef.current);
-
-    // Cleanup on unmount
+    // Cleanup
     return () => {
       mapRef.current && mapRef.current.remove();
       mapRef.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    // If selectedCoordinates changes, fly the map
+    if (selectedCoordinates && mapRef.current) {
+      const [lat, lng] = selectedCoordinates;
+      mapRef.current.flyTo({
+        center: [lng, lat],
+        zoom: 18.5,
+        pitch: 50,
+        bearing: -20,
+        duration: 2000,
+        essential: true,
+      });
+    }
+  }, [selectedCoordinates]);
 
   // Fly back to default view
   const resetMap = () => {

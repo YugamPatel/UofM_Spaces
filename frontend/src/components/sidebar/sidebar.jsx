@@ -4,7 +4,8 @@ import Card from "./card/card";
 import "../sidebar/sidebar.css";
 import Collapsable from "./collapsable/collapsable";
 
-function Sidebar() {
+// Receive onCardClick from props
+function Sidebar({ onCardClick }) {
   return (
     <>
       <div className="outer-body">
