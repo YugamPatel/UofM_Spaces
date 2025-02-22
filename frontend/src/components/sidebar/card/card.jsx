@@ -56,8 +56,8 @@ function Card({ name, description, image, isCollapsable,location, timings, onCli
                             <img
                                 src={
                                     isExpanded
-                                        ? "https://img.icons8.com/?size=100&id=1504&format=png&color=000000"
-                                        : "https://img.icons8.com/?size=100&id=24717&format=png&color=000000"
+                                        ? "https://img.icons8.com/?size=100&id=37839&format=png&color=FFFFFF"
+                                        : "https://img.icons8.com/?size=100&id=11206&format=png&color=FFFFFF"
                                 }
                                 className="icon"
                                 alt="Expand Icon"
