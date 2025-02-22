@@ -8,6 +8,7 @@ function Card({
   image,
   isCollapsable,
   location,
+  coordinates,
   timings,
   onClick,
 }) {
@@ -18,6 +19,27 @@ function Card({
     e.stopPropagation(); // Prevent card click from triggering
     setIsExpanded(!isExpanded);
   };
+
+  const maps = (e) => {
+    e.stopPropagation();
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition((position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            const userLat = coordinates[0];
+            const userLng = coordinates[1];
+            const url =      `https://www.google.com/maps/dir/${lat},${lng}/${userLat},${userLng}/`;   
+            window.open(url, '_blank');
+        },
+    (error) => {
+        console.log("Error in Location fetching");
+        
+    })
+    }
+    else{
+        alert("Geolocation is not supported by this browser.");
+    }
+  }
 
   return (
     <div
@@ -88,6 +110,11 @@ function Card({
           alt="Location Icon"
         />
         <p>{location}</p>
+      </div>
+      <div className="get-location">
+        <button className="loc-btn" onClick={maps}>
+        Get Location
+        </button>
       </div>
 
       {/* Timings */}
