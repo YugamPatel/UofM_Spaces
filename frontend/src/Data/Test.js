@@ -7,7 +7,7 @@ export const spaces = [
     location: "Engineering Atrium",
     coordinates: [49.80841356933436, -97.13388687533251],
     image:
-      "https://images.unsplash.com/20/cambridge.JPG?q=80&w=2294&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://res.cloudinary.com/dsetoffh9/image/upload/v1740188439/EITC_xtysgf.jpg",
   },
   {
     name: "Elizabeth Dafoe Library",
@@ -17,14 +17,14 @@ export const spaces = [
     location: "Fletcher Argue",
     coordinates: [49.8102231737049, -97.13173648596704],
     image:
-      "https://images.unsplash.com/20/cambridge.JPG?q=80&w=2294&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://res.cloudinary.com/dsetoffh9/image/upload/v1740188563/Dafoe_suun3g.jpg",
   },
   {
     name: "Quiet Pods",
     description:
       "Quiet Pods are designed to provide a peaceful environment for studying",
     image:
-      "https://images.unsplash.com/20/cambridge.JPG?q=80&w=2294&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://res.cloudinary.com/dsetoffh9/image/upload/v1740188620/pods_gfugob.jpg",
     isCollapsable: true,
     coordinates: [49.810907475008875, -97.13397201666622],
     location: "Elizabeth Dafoe Library",
@@ -52,6 +52,6 @@ export const spaces = [
     location: "Armes Building",
     coordinates: [49.810907475008875, -97.13397201666622],
     image:
-      "https://images.unsplash.com/20/cambridge.JPG?q=80&w=2294&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://res.cloudinary.com/dsetoffh9/image/upload/v1740188672/armes_u9cvce.jpg",
   },
 ];
