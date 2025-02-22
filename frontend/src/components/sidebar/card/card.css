@@ -1,26 +1,25 @@
 /* Outer card container */
 .outer-card {
   height: max-content;
-  -webkit-backdrop-filter: blur(10px); /* Blur effect */
-  backdrop-filter: blur(10px); /* Blur effect */
   background: rgba(68, 68, 68, 0.703);
   box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+  width: 350px;
   border-radius: 12px;
-  width: 100%;
   padding: 15px;
-  max-width: 300px;
-  transition: transform 0.9s ease-in-out, box-shadow 0.9s ease-in-out, border 1s ease-in-out;
+  transition: transform 0.9s ease-in-out, box-shadow 0.9s ease-in-out,
+    border 1s ease-in-out;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow: scroll;
+  overflow: visible;
   text-wrap: wrap;
+  z-index: 2;
 }
 
 /* Hover effect for a premium look */
 .outer-card:hover {
   /* transform: translateY(-5px); */
-  border: 2px solid rgba(255, 255, 255, 0.8);  
+  border: 2px solid rgba(255, 255, 255, 0.8);
 }
 
 /* Image container */
@@ -50,7 +49,7 @@
 /* Description section */
 .description p {
   font-size: 1rem;
-  color: #555;
+  color: white;
   line-height: 1.4;
   margin: 0;
 }
@@ -66,7 +65,15 @@
   display: inline-block;
 }
 
-.status-closed{
+/* Timings */
+.timing-header {
+  font-size: 1rem;
+  font-weight: bold;
+  color: "white";
+  margin-top: 10px;
+}
+
+.status-closed {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -76,10 +83,9 @@
   padding: 5px;
   background: none;
   color: rgb(238, 32, 21);
-  
 }
 
-.status-open{
+.status-open {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -91,12 +97,12 @@
   color: rgb(23, 189, 1);
 }
 
-.status-icon{
+.status-icon {
   width: 20px;
-  height: fit-content; 
+  height: fit-content;
 }
 
-.location{
+.location {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -107,4 +113,33 @@
   padding: 5px;
   background: none;
   color: rgb(255, 255, 255);
+}
+
+/* When Expanded */
+.collapsible-content.show {
+  max-height: 500px; /* Adjust as needed */
+  opacity: 1;
+}
+
+/* Top Row Display */
+.top-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Icon */
+.icon img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Expand Animation */
+.collapsible-content {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
 }
