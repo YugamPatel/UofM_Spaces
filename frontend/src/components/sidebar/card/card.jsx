@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./card.css";
-import { isOpen } from "../../../helperFunctions/isOpen";
+import { checkIfOpen } from "../../../helperFunctions/mapHelpers";
 
 function Card({
   name,
@@ -58,7 +58,7 @@ function Card({
       {/* Open/Closed Status */}
       {typeof timings === "string" && (
         <>
-          {isOpen(timings) === "Closed" && (
+          {checkIfOpen(timings) === "Closed" && (
             <div className="status-closed">
               <img
                 className="status-icon"
@@ -68,7 +68,7 @@ function Card({
               <p> Closed</p>
             </div>
           )}
-          {isOpen(timings) === "Open" && (
+          {checkIfOpen(timings) === "Open" && (
             <div className="status-open">
               <img
                 className="status-icon"
@@ -119,4 +119,3 @@ function Card({
 }
 
 export default Card;
-
