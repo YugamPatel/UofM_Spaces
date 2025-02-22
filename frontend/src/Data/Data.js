@@ -11,7 +11,7 @@ export const spaces = [
   },
   {
     name: "Elizabeth Dafoe Library",
-    description: "Study spaces in the Elizabeth Dafoa library at the U of M",
+    description: "Study spaces in the Elizabeth Dafoe library at the U of M",
     timings: "07:00 - 23:00",
     isCollapsable: false,
     location: "Fletcher Argue",
