@@ -1,6 +1,6 @@
 export const spaces = [
   {
-    name: "EITC",
+    name: "Price Faculty of Engineering",
     description: "Study spaces in the EITC complex at the U of M",
     timings: "07:00 - 10:00",
     isCollapsable: false,
@@ -53,5 +53,25 @@ export const spaces = [
     coordinates: [49.810907475008875, -97.13397201666622],
     image:
       "https://res.cloudinary.com/dsetoffh9/image/upload/v1740188672/armes_u9cvce.jpg",
+  },
+  {
+    name: "Agriculture Building",
+    description: "Agriculture Building is a great place to find study spaces at the U of M",
+    timings: "07:00 - 20:00",
+    isCollapsable: false,
+    location: "Opposite Agriculture Bus Stop",
+    coordinates: [49.807011037193725, -97.13551276247533],
+    image:
+      "https://res.cloudinary.com/dsetoffh9/image/upload/v1740244007/agriculturebuilding1_u8hmr6.jpg",
+  },
+  {
+    name: "Parker Building",
+    description: "Parker Building has a good number of study spots to find at the U of M",
+    timings: "07:00 - 22:00",
+    isCollapsable: false,
+    location: "Next to Science Complex",
+    coordinates: [49.81133113527645, -97.13456208418513],
+    image:
+      "https://res.cloudinary.com/dsetoffh9/image/upload/v1740244276/parker_cdilk8.jpg",
   },
 ];
