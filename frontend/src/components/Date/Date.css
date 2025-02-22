@@ -1,5 +1,5 @@
 .date {
-    font-size: 0.9rem;
+    font-size: 24px;
     font-weight: bold;
     color: #ffffff;
     text-align: center;
@@ -7,5 +7,5 @@
     background: none;
     padding: 8px 12px;
     border-radius: 8px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 10px rgba(43, 43, 43, 0.192);
 }

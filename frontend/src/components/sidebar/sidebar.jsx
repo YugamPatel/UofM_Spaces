@@ -9,8 +9,11 @@ function Sidebar({ onCardClick }) {
   return (
     <>
       <div className="outer-body">
+        <div className="inner-body">
+        <img src="https://res.cloudinary.com/dsetoffh9/image/upload/v1740193664/universite-manitoba_uswpl2.png" className="uni-img"/>
         <h1 className="title">Spaces</h1>
-        <img src="" alt="" />
+        </div>
+        
         <DateComponent />
         {spaces.map((space, index) => {
           return (

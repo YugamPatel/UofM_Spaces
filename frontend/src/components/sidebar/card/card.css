@@ -1,6 +1,7 @@
 /* Outer card container */
 .outer-card {
   height: max-content;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px); /* Blur effect */
   background-color: #464646c4;
   box-shadow: 5px 0 15px rgba(0, 0, 0, 0.631);
