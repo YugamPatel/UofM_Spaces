@@ -6,6 +6,7 @@
   background: rgba(68, 68, 68, 0.703);
   box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
+  width: 100%;
   padding: 15px;
   max-width: 300px;
   transition: transform 0.9s ease-in-out, box-shadow 0.9s ease-in-out, border 1s ease-in-out;
@@ -18,8 +19,7 @@
 
 /* Hover effect for a premium look */
 .outer-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25); /* Increased glow effect */
+  /* transform: translateY(-5px); */
   border: 2px solid rgba(255, 255, 255, 0.8);  
 }
 
@@ -64,4 +64,47 @@
   padding: 6px 10px;
   border-radius: 6px;
   display: inline-block;
+}
+
+.status-closed{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  height: 20px;
+  border-radius: 5px;
+  padding: 5px;
+  background: none;
+  color: rgb(238, 32, 21);
+  
+}
+
+.status-open{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  height: 20px;
+  border-radius: 5px;
+  padding: 5px;
+  background: none;
+  color: rgb(23, 189, 1);
+}
+
+.status-icon{
+  width: 20px;
+  height: fit-content; 
+}
+
+.location{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  height: 20px;
+  border-radius: 5px;
+  padding: 5px;
+  background: none;
+  color: rgb(255, 255, 255);
 }
