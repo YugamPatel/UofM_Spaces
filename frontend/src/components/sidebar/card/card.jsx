@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./card.css";
 import { checkIfOpen } from "../../../helperFunctions/mapHelpers";
+import { useEffect } from "react";
 
 function Card({
   name,
@@ -15,6 +16,7 @@ function Card({
     const [day, setDay] = useState("")
   const [isExpanded, setIsExpanded] = useState(false);
   const cardId = `card-${name.replace(/\s+/g, "-")}`;
+  const [slots, setSlots] = useState([]);
 
 useEffect(() => {
 console.log(typeof(timings));
@@ -34,26 +36,47 @@ if(typeof(timings) === "string"){
     setIsExpanded(!isExpanded);
   };
 
+  // Fetch data from localhost:5990 when the component mounts
+  useEffect(() => {
+    async function fetchSlotsData() {
+      try {
+        const res = await fetch("http://localhost:5990/api/availability", {
+          method: "POST",
+        });
+        console.log("Response:", res);
+        const data = await res.json();
+        console.log("Data fetched:", data);
+        if (data) {
+          setSlots(data.slots);
+        }
+        console.log("Slots data fetched:", slots);
+      } catch (err) {
+        console.error("Error fetching slots data:", err);
+      }
+    }
+    fetchSlotsData();
+  }, []);
+
   const maps = (e) => {
     e.stopPropagation();
-    if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition((position) => {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            const userLat = coordinates[0];
-            const userLng = coordinates[1];
-            const url =      `https://www.google.com/maps/dir/${lat},${lng}/${userLat},${userLng}/`;   
-            window.open(url, '_blank');
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          const userLat = coordinates[0];
+          const userLng = coordinates[1];
+          const url = `https://www.google.com/maps/dir/${lat},${lng}/${userLat},${userLng}/`;
+          window.open(url, "_blank");
         },
-    (error) => {
-        console.log("Error in Location fetching");
-        
-    })
+        (error) => {
+          console.log("Error in Location fetching");
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by this browser.");
     }
-    else{
-        alert("Geolocation is not supported by this browser.");
-    }
-  }
+  };
 
   return (
     <div
@@ -127,7 +150,7 @@ if(typeof(timings) === "string"){
       </div>
       <div className="get-location">
         <button className="loc-btn" onClick={maps}>
-        Get Location
+          Get Location
         </button>
       </div>
 
