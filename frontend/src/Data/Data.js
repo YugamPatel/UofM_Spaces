@@ -12,7 +12,7 @@ export const spaces = [
   {
     name: "Elizabeth Dafoe Library",
     description: "Study spaces in the Elizabeth Dafoe library at the U of M",
-    timings: "07:00 - 23:00",
+    timings: "Weekdays : 08:00 - 23:00\nSaturday : 10:00 - 18:00\nSunday : 10:00 - 18:00",
     isCollapsable: false,
     location: "Fletcher Argue",
     coordinates: [49.8102231737049, -97.13173648596704],
