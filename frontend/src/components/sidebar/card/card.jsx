@@ -47,7 +47,7 @@ function Card({ name, description, image, isCollapsable,location, timings, onCli
             )}
 
             {isCollapsable && (
-                <div className={`outer-card ${isExpanded ? "expanded" : ""}`}>
+                <div className={`outer-card ${isExpanded ? "expanded" : ""}`} onClick={onClick}>
                     <div className="top-display">
                         <div className="name">
                             <h2>{name}</h2>

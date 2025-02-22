@@ -12,7 +12,7 @@ mapboxgl.accessToken =
 const MapComp = ({ selectedCoordinates }) => {
   // Default map parameters
   const DEFAULT_CENTER = [-97.13283, 49.80958];
-  const DEFAULT_ZOOM = 18; // Zoomed in enough for 3D
+  const DEFAULT_ZOOM = 17; // Zoomed in enough for 3D
   const DEFAULT_PITCH = 45;
   const DEFAULT_BEARING = -17.6;
 
