@@ -8,19 +8,22 @@
   width: 350px;
   border-radius: 12px;
   padding: 15px;
-  transition: transform 0.9s ease-in-out, box-shadow 0.9s ease-in-out,
-    border 1s ease-in-out;
   display: flex;
   flex-direction: column;
   gap: 10px;
   overflow: visible;
   text-wrap: wrap;
   z-index: 2;
+  transition: all 0.3s ease-in-out;
 }
 
 .outer-card:hover {
-  transition: 0.4s ease-in-out;
-  border: 2px solid rgba(0, 255, 229, 0.8);
+  box-shadow: rgb(2, 29, 53) 0px 0px 0px 5px,
+    rgb(171, 171, 171) 0px 0px 0px 8px, rgba(0, 0, 0, 0.25) 0px 14px 23px,
+    rgba(0, 0, 0, 0.22) 0px 5px 5px;
+  opacity: 1;
+  transform: scale(1.008);
+  scale: 1.008;
 }
 
 /* Image container */

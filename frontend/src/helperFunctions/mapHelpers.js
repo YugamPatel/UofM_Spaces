@@ -72,7 +72,11 @@ export async function getUserLocation() {
     const response = await fetch("https://ipapi.co/json");
     const data = await response.json();
     if (data && data.latitude && data.longitude) {
-      console.log("IP-based geolocation successful:", data.latitude, data.longitude);
+      console.log(
+        "IP-based geolocation successful:",
+        data.latitude,
+        data.longitude
+      );
       return [data.latitude, data.longitude];
     } else {
       console.warn("IP-based geolocation failed; missing lat/lng in response.");
@@ -82,5 +86,47 @@ export async function getUserLocation() {
     console.error("Error using IP-based geolocation:", error);
     // If all else fails, return a default location (e.g., center of campus)
     return [49.80958, -97.13283];
+  }
+}
+
+/**
+ * Fetches the current weather (temp in Celsius + icon) based on the user's IP-based city.
+ * @returns {Promise<{ tempC: number, icon: string }>} Weather data (temperature in °C and icon code)
+ */
+export async function fetchWeather() {
+  const API_KEY = "a1321a705a5d2ebee71f51cd279649e1";
+  let cityName = "Winnipeg"; // Default fallback city
+
+  try {
+    // 🌍 Fetch user's city using IP-based geolocation
+    const geoResponse = await fetch("https://ipapi.co/json");
+    if (geoResponse.ok) {
+      const geoData = await geoResponse.json();
+      if (geoData.city) cityName = geoData.city;
+    } else {
+      console.warn("Failed to fetch city from IP geolocation.");
+    }
+  } catch (error) {
+    console.error("Error fetching city from IP geolocation:", error);
+  }
+
+  try {
+    // 🌡️ Fetch weather data using detected city
+    const weatherResponse = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`
+    );
+
+    if (!weatherResponse.ok) {
+      throw new Error(`Weather fetch failed: ${weatherResponse.status}`);
+    }
+
+    const weatherData = await weatherResponse.json();
+    return {
+      tempC: Math.round(weatherData.main.temp), // Temperature in °C (rounded)
+      icon: weatherData.weather[0].icon, // Weather icon code (e.g., "10d")
+    };
+  } catch (error) {
+    console.error("Error fetching weather:", error);
+    return { tempC: null, icon: null }; // Fallback in case of failure
   }
 }

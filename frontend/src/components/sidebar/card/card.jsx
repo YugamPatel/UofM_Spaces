@@ -25,7 +25,6 @@ function Card({
       id={cardId}
       onClick={onClick}
     >
-      {/* Name and Expand Icon for collapsible cards */}
       <div className="top-display">
         <div className="name">
           <h2>{name}</h2>
