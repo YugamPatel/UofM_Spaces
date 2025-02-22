@@ -36,6 +36,9 @@ Welcome to **U of M Spaces**, your **go-to platform** for discovering and naviga
 - Users can **add their own study spots** with location & details  
 - Community-driven navigation for discovering **hidden gems**  
 
+🎯 **Detailed Information**  
+- Add detailed information about each centre to improve user experience
+
 🎯 **🏋️ Amenities & Facilities**  
 - Locate **gyms, cafes, libraries, study lounges, and more**  
 - Filters for quiet study zones, group study rooms, and **24/7 spaces**  
