@@ -3,6 +3,7 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import "./MapComp.css";
 import { spaces } from "../../Data/Test";
+import { isOpen } from "../../helperFunctions/isOpen";
 
 // Replace with your own Mapbox token
 mapboxgl.accessToken =
@@ -10,7 +11,7 @@ mapboxgl.accessToken =
 
 const MapComp = ({ selectedCoordinates }) => {
   // Default map parameters
-  const DEFAULT_CENTER = [-97.13283, 49.80958]; 
+  const DEFAULT_CENTER = [-97.13283, 49.80958];
   const DEFAULT_ZOOM = 18; // Zoomed in enough for 3D
   const DEFAULT_PITCH = 45;
   const DEFAULT_BEARING = -17.6;
@@ -38,7 +39,7 @@ const MapComp = ({ selectedCoordinates }) => {
       pitch: pitch,
       bearing: bearing,
       antialias: true,
-      projection: 'globe'
+      projection: "globe",
     });
 
     // Once the style loads, add a 3D buildings layer
@@ -66,14 +67,17 @@ const MapComp = ({ selectedCoordinates }) => {
         },
         labelLayerId
       );
-      
     });
 
-    // After adding 3D layer, place markers for each space
     spaces.forEach((space) => {
       const [lat, lng] = space.coordinates; // data is [lat, lng]
       const markerDiv = document.createElement("div");
-      markerDiv.className = "marker"; // style in MapComp.css, e.g. small circle
+
+      if (!space.isCollapsable && isOpen(space.timings) === "Closed") {
+        markerDiv.className = "marker-closed";
+      } else {
+        markerDiv.className = "marker-open"; // style in MapComp.css, e.g. small circle
+      }
 
       // Create a Mapbox Marker
       new mapboxgl.Marker(markerDiv)
