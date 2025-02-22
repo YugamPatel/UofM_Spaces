@@ -62,24 +62,28 @@ function Card({
         </div>
       )}
 
-            {isCollapsable && (
-                <div className={`outer-card ${isExpanded ? "expanded" : ""}`} onClick={onClick}>
-                    <div className="top-display">
-                        <div className="name">
-                            <h2>{name}</h2>
-                        </div>
-                        <div className="icon" onClick={toggleExpand}>
-                            <img
-                                src={
-                                    isExpanded
-                                        ? "https://img.icons8.com/?size=100&id=37839&format=png&color=FFFFFF"
-                                        : "https://img.icons8.com/?size=100&id=11206&format=png&color=FFFFFF"
-                                }
-                                className="icon"
-                                alt="Expand Icon"
-                            />
-                        </div>
-                    </div>
+      {isCollapsable && (
+        <div
+          className={`outer-card ${isExpanded ? "expanded" : ""}`}
+          id={cardId}
+          onClick={onClick}
+        >
+          <div className="top-display">
+            <div className="name">
+              <h2>{name}</h2>
+            </div>
+            <div className="icon" onClick={toggleExpand}>
+              <img
+                src={
+                  isExpanded
+                    ? "https://img.icons8.com/?size=100&id=37839&format=png&color=FFFFFF"
+                    : "https://img.icons8.com/?size=100&id=11206&format=png&color=FFFFFF"
+                }
+                className="icon"
+                alt="Expand Icon"
+              />
+            </div>
+          </div>
 
           <div
             className={`collapsible-content ${isExpanded ? "show" : "hide"}`}
