@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./card.css";
 import { checkIfOpen } from "../../../helperFunctions/mapHelpers";
-import { useEffect } from "react";
 
 function Card({
   name,
