@@ -2,8 +2,8 @@
 .outer-card {
   height: max-content;
   backdrop-filter: blur(10px); /* Blur effect */
-  background-color: #5e5e5ea5;
-  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+  background-color: #464646c4;
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.631);
   width: 350px;
   border-radius: 12px;
   padding: 15px;

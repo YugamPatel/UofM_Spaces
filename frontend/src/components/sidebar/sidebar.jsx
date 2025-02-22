@@ -10,6 +10,7 @@ function Sidebar({ onCardClick }) {
     <>
       <div className="outer-body">
         <h1 className="title">Spaces</h1>
+        <img src="" alt="" />
         <DateComponent />
         {spaces.map((space, index) => {
           return (

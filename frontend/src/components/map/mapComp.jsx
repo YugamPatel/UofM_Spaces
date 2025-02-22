@@ -12,9 +12,9 @@ mapboxgl.accessToken =
 const MapComp = ({ selectedCoordinates }) => {
   // Default map parameters
   const DEFAULT_CENTER = [-97.13283, 49.80958];
-  const DEFAULT_ZOOM = 17; // Zoomed in enough for 3D
-  const DEFAULT_PITCH = 45;
-  const DEFAULT_BEARING = -17.6;
+  const DEFAULT_ZOOM = 17.180; // Zoomed in enough for 3D
+  const DEFAULT_PITCH = 65;
+  const DEFAULT_BEARING = 28;
 
   // Store map parameters in state
   const [center, setCenter] = useState(DEFAULT_CENTER);
@@ -118,6 +118,29 @@ const MapComp = ({ selectedCoordinates }) => {
       setZoom(mapRef.current.getZoom());
       setPitch(mapRef.current.getPitch());
       setBearing(mapRef.current.getBearing());
+    });
+
+    mapRef.current.on("style.load", () => {
+      const map = mapRef.current;
+
+      map.setConfigProperty("basemap", "lightPreset", "dusk");
+
+      // use an expression to transition some properties between zoom levels 11 and 13, preventing visibility when zoomed out
+      const zoomBasedReveal = (value) => {
+        return ["interpolate", ["linear"], ["zoom"], 11, 0.0, 13, value];
+      };
+
+      map.setSnow({
+        density: zoomBasedReveal(0.85),
+        intensity: 0.8,
+        "center-thinning": 0.1,
+        direction: [0, 50],
+        opacity: 0.6,
+        color: `#ffffff`,
+        "flake-size": 0.71,
+        vignette: zoomBasedReveal(0.3),
+        "vignette-color": `#ffffff`,
+      });
     });
 
     // Cleanup
