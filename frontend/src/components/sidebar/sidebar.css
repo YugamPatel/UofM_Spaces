@@ -23,7 +23,7 @@
   box-sizing: border-box;
 }
 
-.inner-body{
+.inner-body {
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -31,14 +31,14 @@
 }
 
 .title {
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: bold;
   font-size: 40px;
   letter-spacing: 5px;
   color: rgba(255, 255, 255, 0.871);
 }
 
-.uni-img{
+.uni-img {
   /* background-color: rgba(0, 255, 255, 0.445); */
   border-radius: 10px;
   padding: 10px;
