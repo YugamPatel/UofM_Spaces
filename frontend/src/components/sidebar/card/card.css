@@ -1,12 +1,14 @@
 /* Outer card container */
 .outer-card {
   height: max-content;
-  background: #ffffff;
+  -webkit-backdrop-filter: blur(10px); /* Blur effect */
+  backdrop-filter: blur(10px); /* Blur effect */
+  background: rgba(68, 68, 68, 0.703);
+  box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 15px;
   max-width: 300px;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition: transform 0.9s ease-in-out, box-shadow 0.9s ease-in-out, border 1s ease-in-out;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -17,7 +19,8 @@
 /* Hover effect for a premium look */
 .outer-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25); /* Increased glow effect */
+  border: 2px solid rgba(255, 255, 255, 0.8);  
 }
 
 /* Image container */
@@ -40,7 +43,7 @@
 .name h2 {
   font-size: 1.4rem;
   font-weight: bold;
-  color: #2b2d42;
+  color: white;
   margin: 5px 0;
 }
 
