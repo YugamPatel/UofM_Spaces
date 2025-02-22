@@ -74,4 +74,14 @@ export const spaces = [
     image:
       "https://res.cloudinary.com/dsetoffh9/image/upload/v1740244276/parker_cdilk8.jpg",
   },
+  {
+    name: "University of Manitoba Student Union",
+    description: "UMSU has a variety of study spots and food options.",
+    timings: "07:00 - 23:00",
+    isCollapsable: false,
+    location: "Opp. the U of M Administrative Building",
+    coordinates: [49.809424279316794, -97.13402932310191],
+    image:
+      "https://res.cloudinary.com/dsetoffh9/image/upload/v1740245221/umsu_zi31ow.jpg",
+  },
 ];
