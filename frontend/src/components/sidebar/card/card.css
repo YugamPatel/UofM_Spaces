@@ -71,6 +71,17 @@
   font-weight: bold;
   color: "white";
   margin-top: 10px;
+  width: fit-content;
+}
+
+.timings{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.time{
+  width: fit-content;
 }
 
 .status-closed {
