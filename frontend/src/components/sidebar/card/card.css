@@ -2,12 +2,11 @@
 .outer-card {
   height: max-content;
   backdrop-filter: blur(10px); /* Blur effect */
-  background-color: #555555bf;
+  background-color: #5e5e5ea5;
   box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
   width: 350px;
   border-radius: 12px;
   padding: 15px;
-  max-width: 300px;
   transition: transform 0.9s ease-in-out, box-shadow 0.9s ease-in-out,
     border 1s ease-in-out;
   display: flex;
