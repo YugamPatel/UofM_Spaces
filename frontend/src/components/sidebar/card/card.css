@@ -19,7 +19,7 @@
 
 .outer-card:hover {
   box-shadow: rgb(2, 29, 53) 0px 0px 0px 5px,
-    rgb(171, 171, 171) 0px 0px 0px 8px, rgba(0, 0, 0, 0.25) 0px 14px 23px,
+    rgb(13, 246, 211) 0px 0px 0px 8px, rgba(0, 0, 0, 0.25) 0px 14px 23px,
     rgba(0, 0, 0, 0.22) 0px 5px 5px;
   opacity: 1;
   transform: scale(1.008);

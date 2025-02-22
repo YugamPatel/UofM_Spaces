@@ -130,3 +130,58 @@ export async function fetchWeather() {
     return { tempC: null, icon: null }; // Fallback in case of failure
   }
 }
+
+/**
+ * Fetches stops near a given lat/lon in Winnipeg. Returns the first stop found.
+ *
+ * @param {number} lat - The latitude (e.g. 49.895)
+ * @param {number} lon - The longitude (e.g. -97.138)
+ * @param {number} distance - Distance in meters (default 250)
+ * @returns {Promise<{ name: string, distance: number } | null>}
+ *   Object containing the stop's name and distance (in meters), or null if none found
+ */
+export async function getNearestBusStopWinnipeg(lat, lon, distance = 250) {
+  const API_KEY = "fCjRlr57oQAJWqGMJ7ls";
+
+  // Winnipeg Transit stops endpoint
+  const url = `https://api.winnipegtransit.com/v3/stops.json?lat=${lat}&lon=${lon}&distance=${distance}&api-key=${API_KEY}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(
+        `WinnipegTransit fetch failed: status ${response.status}`
+      );
+    }
+
+    const data = await response.json();
+    // data.stops is an array of stops
+    console.log("Fetched stops:", data.stops);
+
+    if (!data.stops || data.stops.length === 0) {
+      return null; // No stops found within the distance
+    }
+
+    // The array may already be in ascending order by distance,
+    // but let's ensure we pick the truly nearest:
+    data.stops.sort((a, b) => {
+      const distA = parseFloat(a.distances.direct) || Infinity;
+      const distB = parseFloat(b.distances.direct) || Infinity;
+      return distA - distB;
+    });
+
+    // The first item is the nearest
+    const nearest = data.stops[0];
+    const stopName = nearest.name;
+    // distances.direct is in meters, but it's a string; parse it
+    const stopDistance = parseFloat(nearest.distances.direct);
+
+    return {
+      name: stopName,
+      distance: stopDistance,
+    };
+  } catch (err) {
+    console.error("Error fetching bus stop:", err);
+    return null;
+  }
+}
