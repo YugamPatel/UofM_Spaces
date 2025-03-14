@@ -52,7 +52,7 @@ Welcome to **U of M Spaces**, your **go-to platform** for discovering and naviga
 ## 📸 Screenshots and Videos
 ![UofM Spaces](image.png)
 
-<video controls src="Demo.mp4" title="UofM Spaces"></video>
+<video controls src="Demo.gif" title="UofM Spaces"></video>
 
 ---
 
