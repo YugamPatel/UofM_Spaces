@@ -51,7 +51,7 @@ Welcome to **U of M Spaces**, your **go-to platform** for discovering and naviga
 
 ## 📸 Screenshots and Videos
 ### Click to watch 
-[![Watch the demo video](image.png)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+[![Watch the demo video](image.png)](https://www.youtube.com/watch?v=n_vpwmnbMCE)
 
 ---
 
