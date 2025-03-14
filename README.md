@@ -50,9 +50,9 @@ Welcome to **U of M Spaces**, your **go-to platform** for discovering and naviga
 ---
 
 ## 📸 Screenshots and Videos
-![alt text](image.png)
+![UofM Spaces](image.png)
 
-<video controls src="20250222-1735-01.6703026.mp4" title="Title"></video>
+<video controls src="Demo.mp4" title="UofM Spaces"></video>
 
 ---
 
